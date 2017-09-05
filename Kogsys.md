@@ -101,7 +101,10 @@ Die **Wahrscheinlichkeitsdichtefunktion** ist immer nur eine Schatzung, die der 
 - decide the class with the largest samples
 - Beispiel
   - Euklidischer Abstand
-  - K = 1 => Kreis , K = 5 => Kreuz![Screen Shot 2017-08-23 at 23.12.25](/Users/johnny/Pictures/Screenshots/Screen Shot 2017-08-23 at 23.12.25.png)
+
+  - K = 1 => Kreis , K = 5 => Kreuz
+
+    ​
 
 ## 2.7 Perzeptronen
 
@@ -150,8 +153,6 @@ Fragen:
 ###Neuronale Netze
 
 Künstliche Neuronale Netze bestehen aus Neuronen -> Neuronen sind nicht-lineare Funktionen
-
-![Screen Shot 2017-08-25 at 19.32.09](/Users/johnny/Pictures/Screenshots/Screen Shot 2017-08-25 at 19.32.09.png)
 
 Wobei $x_j $ die Aktivierung ist: $\sum_i x_i \cdot w_i$ 
 
