@@ -363,7 +363,32 @@ Basis-Operatoren:
 
 ### Signalverarbeitung
 
+- Welche Eigenschaften muss ein Signal haben, damit eine Fourierzerlegung für das Signal durchgeführt werden kann?
+  - Für die Fourierzerlegung muss das Signal kontinuierlich (unendlich) und periodisch sein. (wie Kosinus und Sinus) 
+- In der Spracherkennung muss das Spektrum für kurze Intervalle berechnet werden, was einer Multiplikation des Signals mit einer Rechteckfunktion entspricht. Dadurch wird bei einem allgemeinen Signal eine Annahme der diskreten Fouriertransformation verletzt. Was ist diese Annahme, welcher Effekt tritt durch die Nichtbeachtung auf und wie nennt man ihn?
+  - Bei der diskreten Fouriertransformation wird davon ausgegangen, dass sich das betrachtete Intervall des Signals periodisch fortsetzt. Da diese Annahme bei allgemeinen Signalen nicht immer zutrifft, treten im DFT-Spektrum Frequenzen auf, die nicht im Signal enthalten sind. Dieser Effekt wird Leck-Effekt (Leakage-Effect) bezeichnet.
+- Welcher Operation im Frequenzbereich entspricht doe Faltung zweier Signale im Zeitbereich?
+  - Werden zwei Signale im Zeitbereich gefaltet, entspricht dies einer Mulitplikation ihrer Fouriertransformierten.
 
+
+### Klassifikation
+
+- Was ist der Unterschied zwischen überwachten und unüberwachten Lernverfahren? Nennen Sie jeweils den praktischen Nachteil der Verfahren.
+  - Bei überwachten Lernverfahren ist die Klassifikationszugehörigkeit der Trainingsdaten bekannt. Unüberwachte Lernverfahren werden hingegen dazu verwendet um die Struktur der Trainingsdaten zu lernen (da die Klassenzugehörigkeit nicht bekannt ist).
+  - Die Bestimmung der Klassenzugehörigkeit (*Labeling*) von Trainingsdaten ist für große Datenmengen sehr aufwendig und kostenintensiv. Bei unüberwachten Lernverfahren ist im Allgemeinen die Anzahl der Klassen, die unterschieden werden sollen, unbekannt. 
+- Erläutere das Prinzip eines k-Nearest-Neighbor-Klassifkators. Was ist jeweils der Vorteil bei kleinem bzw. großem k?
+  - Beim k-Nearest-Neighbor-Klassifikator, basiert die Klassifikation eines Datenpunktes auf der Klasse der k Punkte, die ihm am nächsten liegen (zum Beispiel die k Punkte mit der geringsten euklidischen Distanz). Der zu klassifizierende Datenpunkt wird dabei der Klasse zugeordnet, zu der die meisten der k-Nachbarn gehören.
+  - Der Parameter k sollte einerseits so gewählt werden, dass er klein genug ist, um sicherzustellen, dass alle k Nachbarn nahe bei einem zu klassifizierenden Punkt liegen um eine gute räumliche Auflösung zu gewährleisten. Anderseits sollte k groß genug sein, dass die Anzahl der Punkte eine verlässliche Schätzung zulässt.
+### Spracherkennung
+
+- Welche Rolle spielt das Sprachmodell in der Automatischen Spracherkennung? Beschreiben Sie kurz die zwei verschiedenen Ansätze, die in der Vorlesung behandelt wurden und nennen Sie je einen Vor- und Nachteil des jeweiligen Ansatzes.
+  - soll Informationen darüber liefern, ob eine gegebene Sequenz von Wörtern einen Satz der Sprache darstellt. In der VL wurden 2 Ansätze unterschieden:
+    - Grammatik-basierte Sprachmodelle
+      - Vorteil: großer Kontext von Wörtern kann betrachtet werden
+      - Nachteil: Experte der Sprache muss die Grammatik schreiben
+    - N-gram Sprachmodelle
+      - Vorteil: wird automatisch aus großen Textmengen gelernt
+      - Nachteil: Über eine gewisse Reichweite im Satz hinaus kann kein Kontext mehr einbezogen werden
 
 ###Logik
 
