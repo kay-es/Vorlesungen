@@ -2,64 +2,57 @@
 
 ## 1 	Overview Access Control and Reference Monitor  
 
-### 1.1 Overview: Access Control
-
 - AC is traditional center of gravity of computer security
 - Where security engineering meets computer science
 - Function: controls which principals (persons, processes, machines,…) have access to which resources in a system
+- Einordnung von ACS in der ACM Digital Lib
 
-#### 1.1.1 Einordnung von ACS in der ACM Digital Lib
+  - Computing Classification System (CCS) $\rightarrow$ Security & Privacy $\rightarrow$ Security Services $\rightarrow$ Access Control
+- **Reference Monitor**
+  - Scenario:
 
-- Computing Classification System (CCS) $\rightarrow$ Security & Privacy $\rightarrow$ Security Services $\rightarrow$ Access Control
-
-### 1.2 Reference Monitor
-
-Scenario:
 <img src="images/scenario_ac.png" height="200px" />
 
-Access Control: 
+​	Access Control: 
 
 <img src="images/ac.png" height="200px" />
 
-#### 1.2.1 Access Control Matrix
-
-- Möglichkeit zur Umsetzung von Identitätsbasierter Zugriffskontrolle zum Zeitpunkt **t**
-- **Zeilen der Matrix**: beschreiben Principals
-- **Spalten**: Beschreiben Ressourcen
-- In Zellen stehen Rechte, welche ein Subjekt auf eine Ressource erhält
-- **ABER**: In der Praxis wenig geeignet: Datenstruktur sehr ineffizient $\rightarrow$ ACM ist groß, aber dafür sehr dürftig
+- **Access Control Matrix**
+  - Möglichkeit zur Umsetzung von Identitätsbasierter Zugriffskontrolle zum Zeitpunkt **t**
+  - **Zeilen der Matrix**: beschreiben Principals
+  - **Spalten**: Beschreiben Ressourcen
+  - In Zellen stehen Rechte, welche ein Subjekt auf eine Ressource erhält
+  - **ABER**: In der Praxis wenig geeignet: Datenstruktur sehr ineffizient $\rightarrow$ ACM ist groß, aber dafür sehr dürftig
 
 <img src="images/acm.png" height="200px" />
 
-#### 1.2.2 Capability Lists (CLs)
-
-- Implementierungsmöglichkeit
-- Subject-oriented View: Access privileges are stored together with the subject (rows are stored)
-- Only few implementations (e.g. from IBM) $\rightarrow$ determining all access privileges on an object is expensive $\rightarrow$ determining and delegation of access privileges is easy for single entities 
+- **Capability Lists (CLs)**
+  - Implementierungsmöglichkeit
+  - Subject-oriented View: Access privileges are stored together with the subject (rows are stored)
+  - Only few implementations (e.g. from IBM) $\rightarrow$ determining all access privileges on an object is expensive $\rightarrow$ determining and delegation of access privileges is easy for single entities 
 
 <img src="images/cls.png" height="200px" />
 
-#### 1.2.3 Access Control Lists (ACLs)
-
-- Implementierungsmöglichkeit
-- Object-oriented view: Access privileges are stored together with the object
-- Gegensatz zu CLs
-- Determining and revoking of access privileges can be implemented efficiently $\rightarrow $ Determining all privileges of an entity can be expensive
-- Used by common systems
+- **Access Control Lists (ACLs)**
+  - Implementierungsmöglichkeit
+  - Object-oriented view: Access privileges are stored together with the object
+  - Gegensatz zu CLs
+  - Determining and revoking of access privileges can be implemented efficiently $\rightarrow $ Determining all privileges of an entity can be expensive
+  - Used by common systems
 
 <img src="images/acl.png" height="200px" />
 
-#### 1.2.4 AC Strategies and Methods
+- **AC Strategies and Methods**
 
 <img src="images/ac_strategies.png" height="380px" />
 
-#### 1.2.5 Access Control Complexity
+- **Access Control Complexity**
 
 <img src="images/ac_complexity.png" height="280px" />
 
 
 
-####1.2.6 OS Access Control 
+- **OS Access Control**
 
 <img src="images/os_ac.png" height="100px" />
 
@@ -71,72 +64,67 @@ Access Control:
 
 $\rightarrow$ Reference Monitor Concept
 
-#### 1.2.7 Reference Monitor
+- **Reference Monitor**
 
-Implementation has to comply with:
-
-- Evaluable
-  - small enough to be subject to analysis
-- Always invoked
-  - no alternative access control method
-- Tamper-proof
-  - Mechanism cannot be altered
-
-Erweitertes Konzept:
-
-- Authorization DB
-  - Authorization Informationen 
-- Monitor Interface
-  - Set of controlled operations
-- Audit trails
-  - Traceability of access decisions
-
-#### 1.2.8 Security Kernels
-
-- single most often used technique for building highly secure OS
-- But does not mean that it is always in all security systems or that most people agree that the security kernel is the right way to go
-- Opinion of most researchers: wrong approach
-- But to date has shown more promise than any other technique
+  - Implementation has to comply with:
 
 
+  - Evaluable
+    - small enough to be subject to analysis
+  - Always invoked
+    - no alternative access control method
+  - Tamper-proof
+    - Mechanism cannot be altered
 
-##### 1.2.8.1 Hardware Support
+- Erweitertes Konzept:
 
-- Problem: prevent processes to override each others code/data
+  - Authorization DB
+    - Authorization Informationen 
+  - Monitor Interface
+    - Set of controlled operations
+  - Audit trails
+    - Traceability of access decisions
 
-- Architecture specific mechanisms:
+- **Security Kernels**
 
-  - Hierarchical protection domains 
+  - single most often used technique for building highly secure OS
+  - But does not mean that it is always in all security systems or that most people agree that the security kernel is the right way to go
+  - Opinion of most researchers: wrong approach
+  - But to date has shown more promise than any other technique
+
+- **Hardware Support**
+
+  - Problem: prevent processes to override each others code/data
+
+  - Architecture specific mechanisms:
+
+    - Hierarchical protection domains 
 
     <img src="images/rings.png" height="200px" />
 
-  - Segment addressing
+    - Segment addressing
 
-  - preemtive multitasking
+    - preemtive multitasking
 
-- -> visualize resources
+  - -> visualize resources
 
-- Windows 7 uses only two of four rings
+  - Windows 7 uses only two of four rings
 
-  - Kernel mode = 0
-  - User mode = 3
-
+    - Kernel mode = 0
+    - User mode = 3
 
 
 Implementing OS-Level Access Control using a RM, the OS as well as HW is required to provide according primitives.
 
-##### 1.2.8.2 Software: Linux
+- **Software: Linux**
+  - Linux = POSIX reimplementation -> insufficient security mechanisms
+  - Variaty of extensions: implementing different AC Models proposed for upstream integration
+  - Linux security Modules (LSM)
+    - Hooks = Reference Monitor Interface
+    - Kernel Module = Reference Monitor Implementation
+  - Examples for Implementations: AppAmor, SELinux, Smack, TOMOYO, Yama, ...
+- Linux Security Modules
 
-- Linux = POSIX reimplementation -> insufficient security mechanisms
-- Variaty of extensions: implementing different AC Models proposed for upstream integration
-- Linux security Modules (LSM)
-  - Hooks = Reference Monitor Interface
-  - Kernel Module = Reference Monitor Implementation
-- Examples for Implementations: AppAmor, SELinux, Smack, TOMOYO, Yama, ...
-
-
-
-##### Linux Security Modules
 
 
 
@@ -144,26 +132,22 @@ Implementing OS-Level Access Control using a RM, the OS as well as HW is require
 
 
 
-##### Extended Hardware Support - Intel SGX
+- **Extended Hardware Support - Intel SGX**
+  - Traditional ring approach protects:
+    - os from apps
+    - Apps from each other
 
-- Traditional ring approach protects:
+  - -> A single OS vulnerability may corrupt the whole system
 
-  - os from apps
-  - Apps from each other
+  - Intel Software Guard Extensions (SGX)
+    - Set of extensions to intels architecture
+    - Goal: aims to provide integrity and confidentiality guarantees to security-sensitive computation performed on a computer where all the privileged software (kernel, hypervisor,…) is potentially malicious
 
-- -> A single OS vulnerability may corrupt the whole system
+  - SGX = 'reverse Sandbox' -> prtecting apps from system
 
-- Intel Software Guard Extensions (SGX)
-
-  - Set of extensions to intels architecture
-  - Goal: aims to provide integrity and confidentiality guarantees to security-sensitive computation performed on a computer where all the privileged software (kernel, hypervisor,…) is potentially malicious
-
-- SGX = 'reverse Sandbox' -> prtecting apps from system
-
-- **Enclave** = HW-protected memory region
-
-  - may contain executable code & data
-  - runs subset of instructions (e.g. no syscalls)
+  - **Enclave** = HW-protected memory region
+    - may contain executable code & data
+    - runs subset of instructions (e.g. no syscalls)
 
   <img src="images/enclave.png" height="180px" />
 
@@ -239,13 +223,28 @@ end
 
 ## 4 Attribute based Access Control (ABAC)
 
-Definition:
+- **ABAC**
 
-A logical access control methology where authorisation is determined to perfomr a set of operations by evaluating attributes associated with the subject, object, requestd operations, and, in some cases environment conditions against policy, rules or relationships that describe the allowable operations for a given set of attributes*
+  - A logical access control methology where authorisation is determined to perfomr a set of operations by evaluating attributes associated with the subject, object, requestd operations, and, in some cases environment conditions against policy, rules or relationships that describe the allowable operations for a given set of attributes*
 
+  ​
 
+  ​	*Source: NIST Special Publication 800-162: Guide to Attribute Based Access Control 	
+  ​		(ABAC) Definition and Considerations, 2013
 
-*Source: NIST Special Publication 800-162: Guide to Attribute Based Access Control (ABAC) Definition and Considerations, 2013
+  -  Current status
+  -  Architecture
+  -  Formal definition
+  -  Combination with XACML
+
+- Deployment
+
+  - 4 phases to ABAC
+  - Attribute assuranceDelegation
+
+- Delegation
+
+  - Challenges with the flexibility of ABAC
 
 
 
@@ -511,7 +510,7 @@ Issues of Delegation:
   - **Overview**
     - Implemented as a "road toward the Azure cloud"
     - Works as a mediator between AD and Cloud  services -> makes it easier for businesses
-    -  Internal architecture changed significantly from a single hierarchy to a module-based framework
+    - Internal architecture changed significantly from a single hierarchy to a module-based framework
   - **Dynamic group members**
     - Some ABAC features for an RBAC model
     - Can be used like normal groups, but members are dynamically selected based on rules
@@ -523,3 +522,54 @@ Issues of Delegation:
 
 
 
+
+## 8 Digital Rights Management (DRM)  		
+
+- Copyright and Digital Rights Management
+  - Relation to access control: conditional access systems
+  - Copy prevention/protection
+  - Digital Rights Management
+- Usage control
+  - Definition
+  - UCON model
+  - Administrative model
+
+
+
+## 9 IoT
+
+##10 Secure Data Outsourcing & Access/Pattern Confidentiality 		
+
+- Cryptographically enforced Access Control
+- Example: Secure Data Outsourcing 
+  - Motivation
+  - Challenges 
+- Access Pattern Confidentiality
+  - Information Leakage
+  - Proposed Protocols: ORAM and Burst ORAM
+- Our research: ORAM for Databases 
+  - PATCONFDB
+  - Issues with multiple indices
+
+
+
+## 11 Secure Data Sharing
+
+- Challenge: Secure Data Sharing
+  - Key management
+  - Revocation
+- Shared Cryptographic File Systems
+  - SiRiUS
+  - Boxcryptor 2.0
+- Discussion:
+  - The price of secure data sharing (performance)
+  - Abstract representation via key graphs?			
+
+
+
+## 12 Blockchain and Bitcoin
+
+​		
+​				
+​		
+​	
