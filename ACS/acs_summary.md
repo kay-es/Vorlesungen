@@ -525,18 +525,234 @@ Issues of Delegation:
 
 ## 8 Digital Rights Management (DRM)  		
 
-- Copyright and Digital Rights Management
-  - Relation to access control: conditional access systems
-  - Copy prevention/protection
-  - Digital Rights Management
+- **Digital Rights Management**
+
+  - **Relation to access control: conditional access systems**
+
+    - Urhebergesetz §52a VGWort
+
+    - Protects the tangible or fixed expression of an idea -> NOT the idea itself!
+
+    - Author/Creator can claim copyright if the two conditions are fulfilled:
+
+      - proposed work is original
+      - Idea is put in a conrete form (hard copy like paper, software, mulitmedia)
+
+    - In Contries with the Bern conventions it is automatically assigned to newly crated works
+
+    - DRM refers to controlling and managing digital intellectual property rights
+
+    - Holders of digital rights should be clearly identified and should get the stipulated payment for their work
+
+    - Components: *Clearinghouse, Consumer, Distributor, Content provider*:
+
+      ​
+
+    <img src="images/drm_components.png" height="380px" />
+
+  - **DRM architecture**
+
+    - **Roles**: *Rights Holders*, *Service Providers*, *Customers*
+
+    - **Services**: *Identity Management, Content Management, Rights Management*
+
+    - **Functions**: *Security/Encryption, Authentication/Authorization, Billing/Payments, Delivery*
+
+    - Example: Microsoft PlayReady
+
+       <img src="images/ms_playready.png" height="280px" />
+
+           1. Content is encrypted
+           2. Encrypted key is available to the license server
+           3. content is staged for delivery
+           4. Client discovers content
+           5. To encrypted content client sends a license req to license server
+           6. Server authenticates client and sends license back to client
+           7. Clients plays unencrypted content back according to policies defined in license  
+
 - Usage control
-  - Definition
+
+  - generalization of access control
+
+  - Covers:
+
+    - Authorisations
+    - Obligations
+    - Conditions
+    - Continuity 
+    - Mutability
+
   - UCON model
-  - Administrative model
+
+    - provides family of core models for usage control 
+
+    - Park/Sandhu $UCON_{ABC}$, 2004
+
+       <img src="images/ucon.png" height="380px" />
+
+  - UCON vs traditional Access Control Models
+
+    <img src="images/ucon_vs_acm.png" height="380px" />
+
+    ​
+
+  - There are familiar concepts at $UCON_{ABC}$ to attribute-based access control
+
+  - Components of UCON
+
+    - Subjects (S) and Subject attribute (ATT(S)): *S=user, ATTS={user_group}* 
+    - Objects (O) and Object attribute *(ATT(O)): O=file, ATTO={security_level}*
+    - Rights (R): R=read
+    - Authorizations(A): preA and onA
+    - Obligations(B): preB and onB
+    - Conditions(C): preC and onC
+
+  - **Administrative model**
+
+    - Distinguishes between providers, consumers and Identify subjects -> Baseline setup for IoT scenarios
+    - Mutable attributes are modifiable as a consequence of subject's actions and do not require any administrative action for updates (unlike immutable attributes).
+    - $UCON_{ABC}$ model seperates core models from administrative issues
 
 
+​	
 
-## 9 IoT
+## 9 The Internet of Things - IoT
+
+- **Motivation**
+
+  - Devices often operate in "untrusted environments" (mobile, cloud, IoT, IoE)
+
+- Securing the Internet of Things is very important
+
+- Problems: Vehicle hacking, hacking smart buildings, printing and copiers
+
+- Embedded devices, safety relevant, critical infrastructures
+
+- Issues: Authenticity and integrity 
+
+  - change in scale, criticality complexity 
+
+- **Smartcards**
+
+  - ISO 7816 - Identification cards
+  - ISO 14443 - contactless integrated circuit cards
+  - Memory cards
+
+  <img src="images/mem_cards.png" height="120px" />
+
+  - Microprocessor cards
+
+    <img src="images/micro_smc.png" height="120px" />
+
+  - Example: Mifare Classic (known hack on it)
+
+  - Typical security features
+
+    - Tamper proof design:
+      - Manual chip layout
+      - Mechanisms against various attacks
+        - physical attacks of various forms
+        - freezing the device
+        - applying unusual clock signals
+        - inducing software errors using microwaves
+    - PIN/PUK mechanisms
+    - Access Control for file system
+
+- How to establish trust in "untrusted environments" -> Trusted Computing (TC)
+
+- **Trusted Computing**
+
+  - A technology which is taken from the field of trusted systems where the computer will consistently behave in expected ways 
+
+    - Behavior will be enforced by hardware and software
+    - Behavior is archieved by loading the hardware with a unique encrypted key
+    - the encrypted key is unaccessable to the rest of the system
+  - Controversy: 
+    - hardware is not only secured for its owner -> also secured against its owner
+  - Key concept:
+    - Endorsement key -> chip gets identity
+    - Secure input/output -> hinders attacks like key-stroke loggers and screen scrapers
+    - Memory curtaining /protected execution -> strong memory isolation
+    - Sealed storage -> allows software to keep cryptographically secure secrets
+    - Remote attestation -> software gets identity
+
+- **Access control in vehicles**
+
+  - Connected with personal devices, other cars, road operators
+
+  - various wireless interfaceses
+
+  - Simplified accessibility by attackers
+
+  - Example Hack: Jeep Cherokee
+
+    - remote attack against unaltered vehicle (braking, steering, ...)
+    - Injection of CAN messages
+    - wireless remote access
+    - Recall of 1.4 Million vehicles
+    - But still vulnerable to local attacks
+
+  - Further examples:
+
+    - BMW Connected Drive
+      - unauthorized door opening
+    - Corvette-SMS-Hack
+      - Via insurance telematics system
+    - Engine immobilizer, Tesla Model S, General Motors "OnStar"
+
+  - Coarse grained view:
+
+    - Protection against external attacks
+    - Protection of personal data
+
+  - Challenges
+
+    - Extensive (wireless) interfaces
+
+    - Vehicle IT has historically evolved 
+
+    - Interaction with its environment -> which information should we trust?
+
+    - Communication between vehicles
+
+- **Intra-vehicle Networks**
+
+    - requirements
+        - Confidentiality , integrity, availability, authenticity, non repudiation, privacy
+
+  - Architecture 
+    - Multitude of different bus systems & protocols
+    - connected to each other via a central gateway
+    - remote access possible
+
+  - Achieving security
+    - Hardware Security Modules (HSM)
+      - requirement: Security must not be a bottleneck
+
+- **Security in inter-vehicle networks (C2X)**
+
+  - Two issues of security: Cost and privacy 
+  - Possible attacks: Bogus Attack, DDos, Interception, ...
+  - Security goals: Integrity, Availability, Authenticity, ...
+
+    - However: Confidentiality generally not
+  - Ensure integrity and trustworthiness of C2X messages for digital signatures
+  - Asymmetric crypto
+  - Approaches for communication:
+
+    - Outgoing transmissions are signed and a certificate is attached
+
+    - Idea: Use of pseudonyms
+
+      - Time limited - prevents location tracking
+
+      - Uniqueness - avoid multiple vehicles with same pseudonym 
+
+      - Availability - possibility to store plenty of pseudonyms locally
+  - Lifecycle of pseudonym
+      - Issuance -> use -> change -> change -> resolution -> revocation
+  - Cost of security - payload: Sum 255 Bytes transmission overhead
+
 
 ##10 Secure Data Outsourcing & Access/Pattern Confidentiality 		
 
@@ -563,7 +779,7 @@ Issues of Delegation:
   - Boxcryptor 2.0
 - Discussion:
   - The price of secure data sharing (performance)
-  - Abstract representation via key graphs?			
+    - Abstract representation via key graphs?		
 
 
 
