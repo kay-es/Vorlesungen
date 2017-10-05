@@ -218,8 +218,27 @@ end
 
 <img src="images/acm_grant_rights.png" height="180px" />
 
-
 ## 3 RBAC and Role Mining
+
+- Permission
+  - is an approval of particular mode of access to one or more objects in a system
+  - allways positive
+  - allows the holder to perform some actions in the system
+  - From very coarse grain to very fine grain
+- Idea: reduce complexity by assigning users to roles and roles to permissions
+- Problems:
+  - Complexity of security administration
+  - reduces costs
+- Differences between DAC and RBAC
+  - User cannot pass access permission to other users at their discretion
+- Role: Job function within an organization
+- Security principles that can be modelled by RBAC
+  - Least Privilige
+  - Speration of duties
+  - Dual control Data abstraction
+  - Data abstraction
+- Limitations: cannot control sequence of operations
+- Types: RBAC, RBAC1, RBAC2
 
 ## 4 Attribute based Access Control (ABAC)
 
@@ -756,13 +775,46 @@ Issues of Delegation:
 
 ##10 Secure Data Outsourcing & Access/Pattern Confidentiality 		
 
-- Cryptographically enforced Access Control
+- **Cryptographically enforced Access Control**
+  - Trust relationship between service provider and service consumer does not neccessarily exist in a cloud or IoT environment
+  - We want to be sure that no one (even the service provider) can acces our data in absence of trust
+  - $\rightarrow$ Crypotographically enforced access control
 - Example: Secure Data Outsourcing 
-  - Motivation
+  - Advantages:	
+    - Cost
+    - Availability and Scalability
+    - Administration
+  - Disadvantage:
+    - Data Confidentiality (one of the Top-3 obstacles for cloud comp)
   - Challenges 
+    - User do not trust DaaS (Database-as-a-Service) offerings and the storage provider behind that
+    - Do not accept the company policies
+  - Naive approach: Encrypt data with probabilistic encryption scheme
+    - Not able to query efficiently
+    - Calculations on data are impossible
+  - -> Encrypted index is needed
+  - Content confidentiality:
+    - Attacker who has access to outsourced data is not able to learn the content from that data
+  - Problems of encryption techniques
+    - Inference attack on static data
+      - Attack on deterministic encryption (DTE)
+      - Attack on order-preserving encryption (OPE)
+    - Result: Age, Sex, race, probability of death and severity of illness could be inferred 
+  - -> Security has to be further analyzed
+  - Attacker Models
+    - Honest-but-curious attacker analyzing static data
+    - Honest-but-curious attacker access patterns of data
+    - Attacker who has access to data and access patterns and additionally lets the client encrypt data
 - Access Pattern Confidentiality
-  - Information Leakage
-  - Proposed Protocols: ORAM and Burst ORAM
+  - It is indistinguishable for an attacker:
+    - which parts of the db were accessed by a db operation
+    - whether specific data was repeatedly accessed
+    - whether the db was queried or updated
+  - -> No information leakage, even if series of accesses to same record
+  - Proposed Protocols: oblivious RAM (**ORAM**) and Burst ORAM
+  - ORAM
+    - Get and store operations
+    - not observable for attackers
 - Our research: ORAM for Databases 
   - PATCONFDB
   - Issues with multiple indices
