@@ -197,6 +197,7 @@ Implementing OS-Level Access Control using a RM, the OS as well as HW is require
 
 ## 2 Access Control Matrix
 
+- encodes **PROTECTION STATE**
 - Commands
 
 <img src="images/acm_commands.png" height="180px" />
@@ -218,6 +219,12 @@ end
 
 <img src="images/acm_grant_rights.png" height="180px" />
 
+- State Transitions: Repräsentiert Veränderungern des **Protection States**
+- **LEAK:** Adding a generic right r where there was not one before is caled **leaking**
+- **SAFE:** If a system beginning in state s_o, can't leak **right r**, it is sage with respect to the right r
+- Diskussion: Security vs. Safety
+
+- **BEWEIS WIESO ACM UNENTSCHEIDBAR IST:** Projektion auf Halteproblem
 ## 3 RBAC and Role Mining
 
 - Permission
