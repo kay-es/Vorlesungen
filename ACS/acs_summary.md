@@ -23,6 +23,10 @@
   - **Spalten**: Beschreiben Ressourcen
   - In Zellen stehen Rechte, welche ein Subjekt auf eine Ressource erhält
   - **ABER**: In der Praxis wenig geeignet: Datenstruktur sehr ineffizient $\rightarrow$ ACM ist groß, aber dafür sehr dürftig
+  - Beschreibt **PROTECTION STATE** des Systems **zum Zeitpunkt t**
+  - Besteht aus **St, Ot, Mt**; Subjekte, Objekte und Privilegien zum Zeitpunkt t
+  - **Problem:** Groß, aber spärlich
+  
 
 <img src="images/acm.png" height="200px" />
 
@@ -46,6 +50,12 @@
 
 <img src="images/ac_strategies.png" height="380px" />
 
+- **Administrative Model**
+  - Who is allowed to manage access privileges? 
+    - a) External Entities (administrator, developer)
+    - b) Internal Entities (subjects part of the model)
+    - Mehr bei RBAC/ARBAC (Schaubild bzw. Graph)
+
 - **Access Control Complexity**
 
 <img src="images/ac_complexity.png" height="280px" />
@@ -64,7 +74,7 @@
 
 $\rightarrow$ Reference Monitor Concept
 
-- **Reference Monitor**
+- **Reference Monitor (beschreibt Trusted Computing Base [TCB])** (Bild auf Folie 31)
 
   - Implementation has to comply with:
 
@@ -85,6 +95,7 @@ $\rightarrow$ Reference Monitor Concept
   - Audit trails
     - Traceability of access decisions
 
+- Schaubild von Reference Validation Mechanism (RVM) vs. Security Kernels (zwecks **trusted**-Teil)
 - **Security Kernels**
 
   - single most often used technique for building highly secure OS
